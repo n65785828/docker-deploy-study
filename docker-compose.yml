@@ -1,0 +1,38 @@
+version: "3.2"
+services:
+  myboot:
+    container_name: b0
+    image: myboot:1.0
+    ports:
+    - 7070:89
+    volumes:
+      - /home/b0:/home/apps/hello
+    networks:
+      - myboot
+  myboot1:
+    container_name: b1
+    image: myboot:1.0
+    ports:
+    - 7071:89
+    volumes:
+    - /home/b1:/home/apps/hello
+    networks:
+      - myboot
+  mysql01:
+    container_name: mysql01
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+    - mysql01:/var/lib/mysql
+    - mysql01conf:/etc/mysql/conf.d
+    ports:
+    - 3316:3306
+    networks:
+      - myboot
+networks:
+  myboot:
+    name: "myboot"
+volumes:
+  mysql01:
+  mysql01conf:
