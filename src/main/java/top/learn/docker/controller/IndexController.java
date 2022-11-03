@@ -13,7 +13,7 @@ public class IndexController {
     private UserMapper userMapper;
     @GetMapping("/test")
     public User test(){
-        User user = userMapper.findById("u02");
+        User user = userMapper.findById("1");
         return user;
     }
 }
